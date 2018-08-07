@@ -11,10 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/home', 'CarController@index')->name('home');
+    Route::post('/add-car', 'CarController@addCar')->name('addCar');
+    Route::get('delete/{id}', 'CarController@deleteCar')->name('deleteCar');
+});
+
+Route::group(['middleware' => 'guest'], function () {
+      Route::get('/', 'Auth\LoginController@showLoginForm');
+});
