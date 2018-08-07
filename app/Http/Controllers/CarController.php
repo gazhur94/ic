@@ -30,7 +30,7 @@ class CarController extends Controller
     {
         $colors = Color::orderBy('color')->get();
         $brands = Brand::orderBy('name')->get();
-
+       
         if ( Auth::user()->is_admin) {
             $cars = RegisteredCar::all();
             $users = User::orderBy('name')->get();
