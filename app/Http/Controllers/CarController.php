@@ -50,14 +50,14 @@ class CarController extends Controller
                                         'user'  => 'required',
                                         'brand' => 'required',
                                         'color' => 'required',
-                                        'state_number' => 'unique:registered_cars'
+                                        'state_number' => 'required|unique:registered_cars'
                                         ]);
         } else {
            
             $this->validate($request, [
                                         'brand' => 'required',
                                         'color' => 'required',
-                                        'state_number' => 'unique:registered_cars'
+                                        'state_number' => 'required|unique:registered_cars'
                                         ]);
         }
 
